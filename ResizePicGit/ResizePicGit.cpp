@@ -7,17 +7,16 @@
 
 namespace RescalingFunds{
 
-	void rescalefuns::Downscale(char nimi, int size){
+	void rescalefuns::Downscale(int size){
 		// Prepare GDIplus
 		Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 		ULONG_PTR gdiplusToken;
 		Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, 0);
 
-		// load the image from the disk
-		Gdiplus::Bitmap* original;
 		wchar_t const* name = L"D:\Kuvat\gitproj\test.jpg";
 		wchar_t const* name2 = L"D:\Kuvat\gitproj\test2.jpg";
-		original->FromFile(name);
+		// load the image from the disk
+		Gdiplus::Bitmap* original = Gdiplus::Bitmap::FromFile(name);
 
 		UINT o_height = original->GetHeight();
 		UINT o_width = original->GetWidth();
