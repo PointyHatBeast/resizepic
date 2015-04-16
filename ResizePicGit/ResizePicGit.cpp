@@ -7,14 +7,20 @@
 
 namespace RescalingFunds{
 
-	void rescalefuns::Downscale(int size){
+	void rescalefuns::Downscale(string path, string nimi, int size){
 		// Prepare GDIplus
 		Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 		ULONG_PTR gdiplusToken;
 		Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, 0);
 
-		wchar_t const* name = L"D:\Kuvat\gitproj\test.jpg";
-		wchar_t const* name2 = L"D:\Kuvat\gitproj\test2.jpg";
+		//tehdään kuvan polusta yhteensopiva Gdiplussan funktioille
+		string originalfilepath = path + nimi;
+		wstring originalpathwide(originalfilepath.begin(), originalfilepath.end());
+
+
+		//wchar_t const* name = L"D:\\Kuvat\\gitproj\\test.jpg";
+		wchar_t const* name = originalpathwide.c_str();
+		wchar_t const* name2 = L"D:\\Kuvat\gitproj\\test2.jpg";
 		// load the image from the disk
 		Gdiplus::Bitmap* original = Gdiplus::Bitmap::FromFile(name);
 
@@ -32,9 +38,12 @@ namespace RescalingFunds{
 		if (GetEncoderClsid(L"image/jpeg", &jpgCLsid) > -1){
 			newBitmap->Save(name2, &jpgCLsid);
 		}
-
+		
+		delete original;
 		// Stop Gdiplus
 		Gdiplus::GdiplusShutdown(gdiplusToken);
+
+		return;
 	}
 
 	int rescalefuns::GetEncoderClsid(const WCHAR* form, CLSID* pClsid){
