@@ -2,14 +2,12 @@
 #include "RescaleFuncs.h"
 
 #ifdef eng
-string helpmsg = "";
 string registryerror = "Registry did not work";
 string picpathcreatemsg = "Default path has not been set for pictures. Set a new path, like D:\\Kuvat\\";
 string picnamemsg = "Give name of the picture and its filetype, like test.jpg";
 string pathchanged = "Default filepath changed to: ";
 string helpmsg = "If you want to change default picture folder, use -k as parameter and add the folder, like -k D:\\Koodaus\\";
 #else
-string helpmsg = "";
 string registryerror = "Rekisteri ei toiminut";
 string picpathcreatemsg = "Oletus sovelluspolkua kuville ei ole asetettu. Aseta uusi sovelluspolku esim D:\\Kuvat\\";
 string picnamemsg = "Anna pienennettävän kuvan nimi ja tiedostotyyppi, esim test.jpg\n";
@@ -49,7 +47,9 @@ int main(int argc, char *argv[])
 		RegSetValueExA(key, "picpath", 0, REG_SZ, (const BYTE*)picpath.c_str(), picpath.length() + 1);
 
 	}
-	else if(argc > 1 && string(argv[1]) == "-h"){
+	
+	if(argc > 1 && string(argv[1]) == "-h"){
+
 		cout << helpmsg << endl;
 
 	}
