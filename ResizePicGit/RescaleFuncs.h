@@ -4,10 +4,10 @@
 //
 #pragma once
 
+#pragma comment(lib,"gdiplus.lib")
+
 #ifndef DLLclass
 #define DLLclass
-
-#include "targetver.h"
 
 #include <cstdint>
 #include <objidl.h>
@@ -16,9 +16,6 @@
 #include <string>
 #include <fstream>
 
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files:
-#include <windows.h>
 
 #ifdef RESCALINGFUNCSDLL_EXPORTS
 #define RESCALINGFUNCSDLL_API __declspec(dllexport)
@@ -26,22 +23,14 @@
 #define RESCALINGFUNCSDLL_API __declspec(dllimport)
 #endif
 
+using namespace std;
 
-extern "C"
-{
-	RESCALINGFUNCSDLL_API void Downscale(char nimi, int size);
+namespace RescalingFunds{
+	class rescalefuns{
+	public:
+		static RESCALINGFUNCSDLL_API void Downscale(string path, string nimi, int size);
 
-	RESCALINGFUNCSDLL_API int GetEncoderClsid(const WCHAR* form, CLSID* pClsid);
+		static RESCALINGFUNCSDLL_API int GetEncoderClsid(const WCHAR* form, CLSID* pClsid);
+	};
 }
-
-//class RescalingFuncs
-//{
-//public:
-//	// creates copy of a picture and rescales it
-//	
-//private:
-//	
-//};
-
-
 #endif 
