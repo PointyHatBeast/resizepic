@@ -14,7 +14,7 @@ void rescalefuns::Downscale(string path, string nimi, int size){
 	ULONG_PTR gdiplusToken;
 	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, 0);
 
-	//tehd‰‰n kuvan polusta yhteensopiva Gdiplussan funktioille
+	//tehd√§√§n kuvan polusta yhteensopiva Gdiplussan funktioille
 	string originalfilepath = path + nimi;
 	wstring originalpathwide(originalfilepath.begin(), originalfilepath.end());
 
