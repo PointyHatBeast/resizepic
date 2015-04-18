@@ -16,6 +16,7 @@
 #include <string>
 #include <fstream>
 
+#define RESCALINGFUNCSDLL_EXPORTS
 
 #ifdef RESCALINGFUNCSDLL_EXPORTS
 #define RESCALINGFUNCSDLL_API __declspec(dllexport)
@@ -26,11 +27,12 @@
 using namespace std;
 
 namespace RescalingFunds{
-	class rescalefuns{
+	class RESCALINGFUNCSDLL_API rescalefuns{
 	public:
-		static RESCALINGFUNCSDLL_API void Downscale(string path, string nimi, int size);
+		static void Downscale(string path, string nimi, int size);
 
-		static RESCALINGFUNCSDLL_API int GetEncoderClsid(const WCHAR* form, CLSID* pClsid);
+		static int GetEncoderClsid(const WCHAR* form, CLSID* pClsid);
 	};
+	
 }
 #endif 
