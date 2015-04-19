@@ -18,11 +18,21 @@ string helpmsg = "Jos haluat vaihtaa oletuskansiota, käytä komentoparametrina -k
 
 int main(int argc, char *argv[])
 {
+
+	//Tarkastetaan, että laittomia operaattoreita ei ole käytetty KESKEN
+	/*if (argc > 1){
+
+		if (string(argv[1]) != "-k" || string(argv[1] != "-h")){
+			return 0;
+		}
+
+	}*/
+
 	HKEY key;
 	LONG Registry;
 	string picpath = "D:\\Kuvat\\gitproj\\";
 	string picname = "test.jpg";
-	
+
 	//Tarkistetaan, onko rekisterissä kansiota sovellukselle ...
 	Registry = RegOpenKey(HKEY_CURRENT_USER, TEXT("Software\\PicResizer\\"), &key);
 	if (Registry == ERROR_FILE_NOT_FOUND)
@@ -47,8 +57,8 @@ int main(int argc, char *argv[])
 		RegSetValueExA(key, "picpath", 0, REG_SZ, (const BYTE*)picpath.c_str(), picpath.length() + 1);
 
 	}
-	
-	if(argc > 1 && string(argv[1]) == "-h"){
+
+	if (argc > 1 && string(argv[1]) == "-h"){
 
 		cout << helpmsg << endl;
 
@@ -56,7 +66,7 @@ int main(int argc, char *argv[])
 
 	DWORD y_size = sizeof(picpath);
 	DWORD y_type = REG_SZ;
-	
+
 	Registry = RegQueryValueExA(key, "picpath", NULL, &y_type, (LPBYTE)&picpath, &y_size);
 
 	/*kysytään tiedoston nimi*/
@@ -67,7 +77,7 @@ int main(int argc, char *argv[])
 
 	RescalingFunds::rescalefuns::Downscale(picpath, picname, 150);
 
-	
+
 	printf("toimiiko");
 	return 0;
 }
