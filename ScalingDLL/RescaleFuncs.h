@@ -32,6 +32,14 @@ namespace RescalingFunds{
 		static void Downscale(string path, string nimi, int size);
 
 		static int GetEncoderClsid(const WCHAR* form, CLSID* pClsid);
+
+		static void copyFile(string path, string name);
+
+		static void compressImpl(const std::string& path, int size, ULONG quality);
+
+		static int getEncoderClsid(const WCHAR* format, void* clsid);
+
+		static void setEncoderQuality(void* params, ULONG *quality);
 	};
 	
 }

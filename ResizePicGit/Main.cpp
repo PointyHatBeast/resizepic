@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	string picpath = "D:\\Kuvat\\gitproj\\";
 	string picname = "test.jpg";
 
-	//Tarkistetaan, onko rekisterissä kansiota sovellukselle ...
+	////Tarkistetaan, onko rekisterissä kansiota sovellukselle ...
 	Registry = RegOpenKey(HKEY_CURRENT_USER, TEXT("Software\\PicResizer\\"), &key);
 	if (Registry == ERROR_FILE_NOT_FOUND)
 	{
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 		RegSetValueExA(key, "picpath", 0, REG_SZ, (const BYTE*)picpath.c_str(), picpath.length() + 1);
 	}
 
-	//jos käytetään -k parametriä, voidaan asettaa uusi oletuskansio sovellukselle, joka lisätään rekisteriin
+	////jos käytetään -k parametriä, voidaan asettaa uusi oletuskansio sovellukselle, joka lisätään rekisteriin
 	if (argc > 1 && string(argv[1]) == "-k"){
 		picpath = string(argv[2]);
 		cout << pathchanged << " " << picpath << endl;
@@ -64,12 +64,12 @@ int main(int argc, char *argv[])
 
 	}
 
-	DWORD y_size = sizeof(picpath);
-	DWORD y_type = REG_SZ;
+	//DWORD y_size = sizeof(picpath);
+	//DWORD y_type = REG_SZ;
 
-	Registry = RegQueryValueExA(key, "picpath", NULL, &y_type, (LPBYTE)&picpath, &y_size);
+	//Registry = RegQueryValueExA(key, "picpath", NULL, &y_type, (LPBYTE)&picpath, &y_size);
 
-	/*kysytään tiedoston nimi*/
+	///*kysytään tiedoston nimi*/
 	cout << picnamemsg;
 	cin >> picname;
 
